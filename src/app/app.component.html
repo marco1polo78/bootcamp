@@ -9,8 +9,8 @@
   </nav>
 </header>
 <div class = "content">
-  <div class="news-feed">
-    <div class="form">
+  <div class="content__newsfeed">
+    <div class="content__newsfeed__form">
       <form [ngStyle] = "{
           display: showFormForNewPost ? 'block' : 'none'
         }"
@@ -45,12 +45,12 @@
       [post] = "p"
     ></app-post>
   </div>
-  <div class="nav-tag-bar">
+  <aside class="content__tagbar">
     <h3>
       Popular Tags
     </h3>
     <p>
         {{(listTags).length ? (listTags).toString() : 'No tags are here... yet'}}
     </p>
-  </div>
+  </aside>
 </div>

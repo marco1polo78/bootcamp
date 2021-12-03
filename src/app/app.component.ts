@@ -34,7 +34,7 @@ export class AppComponent implements OnInit{
 
   form!: FormGroup;
 
-  showFormForNewPost:boolean = true;
+  showFormForNewPost:boolean = false;
 
   ngOnInit() {
     this.form = new FormGroup({
