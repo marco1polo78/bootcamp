@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NewsFeadComponent } from './newsFead/newsFead.component';
 import { PostComponent } from './post/post.component';
-import { NavTagBarComponent } from './nav-tag-bar/nav-tag-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewsFeadComponent,
-    PostComponent,
-    NavTagBarComponent
+    PostComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

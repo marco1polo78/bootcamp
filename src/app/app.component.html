@@ -2,21 +2,55 @@
   <h1>
     My Blog
   </h1>
-  <ul>
-    <li>
-      Home
-    </li>
-    <li>
-      New Article
-    </li>
-    <li>
-      User Name
-    </li>
-  </ul>
+  <nav>
+    <a>Home</a>
+    <a (click)="showFormForNewPost = !showFormForNewPost">New Article</a>
+    <a>User Name</a>
+  </nav>
 </header>
 <div class = "content">
-  <app-news-feed>
-  </app-news-feed>
-  <app-nav-tag-bar>
-  </app-nav-tag-bar>
+  <div class="news-feed">
+    <div class="form">
+      <form [ngStyle] = "{
+          display: showFormForNewPost ? 'block' : 'none'
+        }"
+        [formGroup] = "form"
+        (ngSubmit) = "submit()"
+      >
+      <label>Title</label>
+      <input type="text" formControlName = "title">
+      <div
+        *ngIf = "title.touched && title.invalid"
+        class = "validation"
+      >
+        <small>
+          Your title is short
+        </small>
+      </div>
+      <label>Description</label>
+      <input type="text" formControlName = "description">
+      <div
+        *ngIf = "description.touched && description.invalid"
+        class = "validation"
+      >
+        <small>
+          Your description is short
+        </small>
+      </div>
+      <button type = "submit" [disabled] = "form.invalid">Submit</button>
+      </form>
+    </div>
+    <app-post
+      *ngFor = "let p of posts"
+      [post] = "p"
+    ></app-post>
+  </div>
+  <div class="nav-tag-bar">
+    <h3>
+      Popular Tags
+    </h3>
+    <p>
+        {{(listTags).length ? (listTags).toString() : 'No tags are here... yet'}}
+    </p>
+  </div>
 </div>
