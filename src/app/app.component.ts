@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppModalComponent } from './app-modal/app-modal.component'
 
-const posts = [
+const posts: Post[] = [
   {
       userName: 'John Dow',
       datePost: new Date('2021-11-07T11:55:36.244Z'),
@@ -34,24 +34,23 @@ export class AppComponent{
   posts: Post[] = posts;
   listTags: string[] = [];
 
-  showFormForNewPost:boolean = true;
-
   constructor(public dialog: MatDialog) { }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AppModalComponent, {
       width: '500px',
-      height: '500px'
+      height: '500px',
+      autoFocus: false
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      this.posts.unshift({
-            'userName': 'John Dow',
-            'datePost': new Date(),
-            'title': result.title,
-            'description': result.description
-          });
+      if (result)
+        this.posts.unshift({
+              'userName': 'John Dow',
+              'datePost': new Date(),
+              'title': result.title,
+              'description': result.description
+            });
     });
   }
 }

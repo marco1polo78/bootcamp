@@ -13,22 +13,29 @@ export class AppModalComponent {
   constructor(
     public dialogRef: MatDialogRef<AppModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.form = new FormGroup({
-        title: new FormControl('', [ Validators.required, Validators.minLength(3) ]),
-        description: new FormControl('', [ Validators.required, Validators.minLength(3) ])
-      });
-    }
-  
+    this.form = new FormGroup({
+      title: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      description: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      
+    });
+  }
+
   submit() {
-    console.log(this.title.touched);
+    if (this.form.valid) {
+      this.dialogRef.close({
+        title: this.form.value.title,
+        description: this.form.value.description
+      });
+      this.form.reset();
+      Object.values(this.form.controls).forEach(value => {
+        value.setErrors(null);
+      })
+    }
+  }
+
+  close() {
+    this.dialogRef.close();
     this.form.reset();
-    Object.values(this.form.controls).forEach(value => {
-      value.setErrors(null) ;
-    })
-    // this.dialogRef.close({
-    //   title: this.form.value.title,
-    //   description: this.form.value.description
-    // });
   }
 
   get title(): any {
