@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -22,13 +23,13 @@ import { AppModalComponent } from './app-modal/app-modal.component';
     BrowserModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-
     FormsModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

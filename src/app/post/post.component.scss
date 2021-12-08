@@ -1,16 +1,5 @@
 .post{
     width: 100%;
-    &-post-info{
-        display: flex;
-        justify-content: left;
-        min-height: 50px;
-        padding: 10px;
-        div{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-        }
-    }
     p, h2, h3{
         margin: 0px
     }
@@ -27,5 +16,9 @@
     &-image{
         background-image: url('../../assets/img/profile-icon-png-899-Windows.ico');
         background-size: cover;
+    }
+    &-header{
+        display: flex;
+        justify-content: space-between;
     }
 }
