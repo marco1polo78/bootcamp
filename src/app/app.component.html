@@ -17,27 +17,19 @@
         [formGroup] = "form"
         (ngSubmit) = "submit()"
       >
-      <label>Title</label>
-      <input type="text" formControlName = "title">
-      <div
-        *ngIf = "title.touched && title.invalid"
-        class = "validation"
-      >
-        <small>
-          Your title is short
-        </small>
+      <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput placeholder="Main title for new post" value="" formControlName = "title" autocomplete="off">
+        </mat-form-field>
       </div>
-      <label>Description</label>
-      <input type="text" formControlName = "description">
-      <div
-        *ngIf = "description.touched && description.invalid"
-        class = "validation"
-      >
-        <small>
-          Your description is short
-        </small>
+      <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Short description for post" value="" formControlName = "description" autocomplete="off">
+        </mat-form-field>
       </div>
-      <button type = "submit" [disabled] = "form.invalid">Submit</button>
+      <button mat-raised-button type = "submit" [disabled] = "form.invalid">Submit</button>
       </form>
     </div>
     <app-post

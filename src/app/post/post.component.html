@@ -1,20 +1,15 @@
-<div class = "post">
-    <hr>
-    <div class="post-post-info">
-        <img src="../../assets/img/profile-icon-png-899-Windows.ico" alt="">
-        <div>
-            <h2>
-                {{post.userName}}
-            </h2>
-            <p>
-                {{post.datePost | date :'longDate' }}
-            </p>
-        </div>
-    </div>
-    <h3>
-        {{post.title}}
-    </h3>
-    <p>
-        {{post.description}}
-    </p>
-</div>
+<mat-card class="post-card">
+    <mat-card-header>
+        <div mat-card-avatar class="post-card-image"></div>
+        <mat-card-title class="post-card-name">{{post.userName}}</mat-card-title>
+        <mat-card-subtitle class="post-card-date">{{post.datePost | date :'longDate' }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <h3>
+            {{post.title}}
+        </h3>
+        <p>
+            {{post.description}}
+        </p>
+    </mat-card-content>
+</mat-card>
