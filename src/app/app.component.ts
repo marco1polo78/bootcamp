@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AppModalComponent } from './app-modal/app-modal.component'
 
 const posts = [
   {
@@ -15,6 +16,7 @@ const posts = [
       description: 'The impactvof COVID-19 has seen a substantial increase'
   }
 ];
+
 export interface Post {
   userName: string,
   datePost: string | Date,
@@ -28,37 +30,28 @@ export interface Post {
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent{
   posts: Post[] = posts;
   listTags: string[] = [];
 
-  form!: FormGroup;
-
   showFormForNewPost:boolean = true;
 
-  ngOnInit() {
-    this.form = new FormGroup({
-      title: new FormControl('', [ Validators.required, Validators.minLength(3) ]),
-      description: new FormControl('', [ Validators.required, Validators.minLength(3) ])
+  constructor(public dialog: MatDialog) { }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AppModalComponent, {
+      width: '500px',
+      height: '500px'
     });
-  }
 
-  submit() {
-    this.posts.unshift({
-      'userName': 'John Dow',
-      'datePost': new Date(),
-      'title': this.form.value.title,
-      'description': this.form.value.description
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      this.posts.unshift({
+            'userName': 'John Dow',
+            'datePost': new Date(),
+            'title': result.title,
+            'description': result.description
+          });
     });
-    this.form.reset();
-    this.showFormForNewPost = false;
-  }
-
-  get title(): any {
-    return this.form.get('title');
-  }
-
-  get description(): any {
-    return this.form.get('description');
   }
 }
