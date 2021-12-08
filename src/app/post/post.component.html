@@ -1,0 +1,20 @@
+<div class = "post">
+    <hr>
+    <div class="post-post-info">
+        <img src="../../assets/img/profile-icon-png-899-Windows.ico" alt="">
+        <div>
+            <h2>
+                {{post.userName}}
+            </h2>
+            <p>
+                {{post.datePost | date :'longDate' }}
+            </p>
+        </div>
+    </div>
+    <h3>
+        {{post.title}}
+    </h3>
+    <p>
+        {{post.description}}
+    </p>
+</div>
