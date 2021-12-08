@@ -7,13 +7,15 @@ const posts: Post[] = [
       userName: 'John Dow',
       datePost: new Date('2021-11-07T11:55:36.244Z'),
       title: 'NATURAL LANGUAGE INTERFACE ACCESSIBILITY',
-      description: 'Spoken interaction with mobile devices and consumer'
+      description: 'Spoken interaction with mobile devices and consumer',
+      textArea: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus autem suscipit velit! Dolor dolorum, eaque voluptate voluptas vero possimus quaerat.'
   },
   {
       userName: 'John Dow',
       datePost: new Date('2021-11-07T11:55:36.244Z'),
       title: 'Accessibility of Remote Meeting',
-      description: 'The impactvof COVID-19 has seen a substantial increase'
+      description: 'The impactvof COVID-19 has seen a substantial increase',
+      textArea: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus autem suscipit velit! Dolor dolorum, eaque voluptate voluptas vero possimus quaerat.'
   }
 ];
 
@@ -21,7 +23,8 @@ export interface Post {
   userName: string,
   datePost: string | Date,
   title: string,
-  description: string
+  description: string,
+  textArea: string
 }
 
 @Component({
@@ -49,7 +52,8 @@ export class AppComponent{
               'userName': 'John Dow',
               'datePost': new Date(),
               'title': result.title,
-              'description': result.description
+              'description': result.description,
+              'textArea': ''
             });
     });
   }

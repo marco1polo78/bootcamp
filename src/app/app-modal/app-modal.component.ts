@@ -7,6 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './app-modal.component.html',
   styleUrls: ['./app-modal.component.scss']
 })
+
 export class AppModalComponent {
   form!: FormGroup;
 
@@ -16,7 +17,7 @@ export class AppModalComponent {
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.minLength(3)]),
       description: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      
+      textarea:  new FormControl('', [Validators.required, Validators.minLength(10)]),
     });
   }
 
@@ -24,7 +25,8 @@ export class AppModalComponent {
     if (this.form.valid) {
       this.dialogRef.close({
         title: this.form.value.title,
-        description: this.form.value.description
+        description: this.form.value.description,
+        textarea: this.form.value.textarea
       });
       this.form.reset();
       Object.values(this.form.controls).forEach(value => {
@@ -44,6 +46,10 @@ export class AppModalComponent {
 
   get description(): any {
     return this.form.get('description');
+  }
+
+  get textarea(): any {
+    return this.form.get('textarea');
   }
 
 }

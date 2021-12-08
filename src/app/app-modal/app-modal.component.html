@@ -12,10 +12,16 @@
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
-        <input matInput placeholder="Short description for post" formControlName="description"
-          autocomplete="off">
+        <input matInput placeholder="Short description for post" formControlName="description" autocomplete="off">
         <mat-error *ngIf="description.touched && description.invalid">
           Your description is short
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Post message</mat-label>
+        <textarea matInput placeholder="" formControlName="textarea"></textarea>
+        <mat-error *ngIf="textarea.touched && textarea.invalid">
+          Your post message is short
         </mat-error>
       </mat-form-field>
     </div>
