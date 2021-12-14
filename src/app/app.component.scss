@@ -1,97 +1,38 @@
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  margin-top: 20px;
 
-header{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
-    *{
-        margin: 0
+  h1 {
+    color: #22b422;
+  }
+
+  nav {
+    a {
+      margin: 0px 15px;
+      cursor: pointer;
     }
-    h1{
-        color: rgba(34, 180, 34, 0.712);
-    }
-    nav{
-        display: flex;
-        a{
-            margin: 0 10px;
-            height: min-content;
-        }
-    }
+  }
 }
 
-.content{
+.content {
+  display: flex;
+  justify-content: space-between;
+
+  &__newsfeed {
+    width: 75%;
     display: flex;
-    justify-content: space-between;
-    
-    &__newsfeed{
-        width: 75%;
-        display: flex;
-        flex-direction: column;
-        
-        &__form{
-            .validation{
-                color: red;
-            }
+    flex-direction: column;
+  }
 
-            .mat-form-field{
-                width: 100%;
-                margin: auto;
-            }
-
-            ::ng-deep .mat-form-field {
-                .mat-input-element {
-                    color: slategray;
-                }
-                .mat-form-field-label {
-                    color: slategray;
-                }
-                .mat-form-field-underline {
-                    background-color: slategray;
-                }
-                .mat-form-field-ripple {
-                    background-color: slategray;
-                }
-                .mat-form-field-required-marker {
-                    color: slategray;
-                }
-            }
-
-            ::ng-deep .mat-form-field.mat-form-field-invalid {
-                .mat-input-element {
-                    color: red;
-                }
-                .mat-form-field-label {
-                    color: red;
-                }
-                .mat-form-field-required-marker {
-                    color: red;
-                }
-                .mat-form-field-ripple {
-                    background-color: red;
-                }
-            }
-
-            button[type=submit] {
-                float: right;
-                background-color: rgba(34, 180, 34, 0.712);
-                color: white;
-                margin: 4px 2px;
-                border-radius: 5px;
-                min-height: 40px;
-                min-width: 130px;
-            }
-        }
-    }
-
-    &__tagbar{
-        width: 20%;
-        height: 100px;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: whitesmoke;
-        h3{
-            margin: 0;
-        }
-    }
+  &__tagbar {
+    width: 20%;
+    max-height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+  }
 
 }

@@ -1,25 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AppModalComponent } from './app-modal/app-modal.component'
 
-const posts = [
+const posts: Post[] = [
   {
       userName: 'John Dow',
       datePost: new Date('2021-11-07T11:55:36.244Z'),
       title: 'NATURAL LANGUAGE INTERFACE ACCESSIBILITY',
-      description: 'Spoken interaction with mobile devices and consumer'
+      description: 'Spoken interaction with mobile devices and consumer',
+      textArea: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus autem suscipit velit! Dolor dolorum, eaque voluptate voluptas vero possimus quaerat.'
   },
   {
       userName: 'John Dow',
       datePost: new Date('2021-11-07T11:55:36.244Z'),
       title: 'Accessibility of Remote Meeting',
-      description: 'The impactvof COVID-19 has seen a substantial increase'
+      description: 'The impactvof COVID-19 has seen a substantial increase',
+      textArea: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus autem suscipit velit! Dolor dolorum, eaque voluptate voluptas vero possimus quaerat.'
   }
 ];
+
 export interface Post {
   userName: string,
   datePost: string | Date,
   title: string,
-  description: string
+  description: string,
+  textArea: string
 }
 
 @Component({
@@ -28,37 +33,28 @@ export interface Post {
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent{
   posts: Post[] = posts;
   listTags: string[] = [];
 
-  form!: FormGroup;
+  constructor(public dialog: MatDialog) { }
 
-  showFormForNewPost:boolean = true;
-
-  ngOnInit() {
-    this.form = new FormGroup({
-      title: new FormControl('', [ Validators.required, Validators.minLength(3) ]),
-      description: new FormControl('', [ Validators.required, Validators.minLength(3) ])
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AppModalComponent, {
+      width: '500px',
+      height: '500px',
+      autoFocus: false
     });
-  }
 
-  submit() {
-    this.posts.unshift({
-      'userName': 'John Dow',
-      'datePost': new Date(),
-      'title': this.form.value.title,
-      'description': this.form.value.description
+    dialogRef.afterClosed().subscribe(result => {
+      if (result)
+        this.posts.unshift({
+              'userName': 'John Dow',
+              'datePost': new Date(),
+              'title': result.title,
+              'description': result.description,
+              'textArea': ''
+            });
     });
-    this.form.reset();
-    this.showFormForNewPost = false;
-  }
-
-  get title(): any {
-    return this.form.get('title');
-  }
-
-  get description(): any {
-    return this.form.get('description');
   }
 }
