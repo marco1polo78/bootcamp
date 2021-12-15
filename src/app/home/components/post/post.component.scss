@@ -1,20 +1,18 @@
-.post{
+@import '/src/styles/variables';
+.post-card {
+    margin-bottom: 8px;
     width: 100%;
     p, h2, h3{
         margin: 0px
     }
     h2{
-        color:yellowgreen
+        color:$base-color;
     }
     h3{
         margin-bottom: 10px;
     }
-}
-
-.post-card {
-    margin-bottom: 8px;
     &-image{
-        background-image: url('../../assets/img/profile-icon-png-899-Windows.ico');
+        background-image: url('../../../../assets/img/profile-icon-png-899-Windows.ico');
         background-size: cover;
     }
     &-header{
