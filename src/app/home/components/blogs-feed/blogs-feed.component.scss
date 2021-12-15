@@ -1,0 +1,21 @@
+@import '/src/styles/variables';
+
+.content {
+  display: flex;
+  justify-content: space-between;
+
+  &__newsfeed {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__tagbar {
+    width: 20%;
+    max-height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: $tagbar-background-color;
+  }
+
+}

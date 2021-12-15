@@ -1,0 +1,13 @@
+<div class="content">
+  <div class="content__newsfeed">
+    <app-post *ngFor="let p of posts" [post]="p"></app-post>
+  </div>
+  <aside class="content__tagbar">
+    <h3>
+      Popular Tags
+    </h3>
+    <p>
+      {{(listTags).length ? (listTags).toString() : 'No tags are here... yet'}}
+    </p>
+  </aside>
+</div>

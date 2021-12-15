@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ListBlogsService } from '../../../home/services/list-blogs.service';
 
 @Component({
   selector: 'app-app-modal',
@@ -13,6 +14,7 @@ export class AppModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AppModalComponent>,
+    private listBlogsService: ListBlogsService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -23,12 +25,15 @@ export class AppModalComponent {
 
   submit() {
     if (this.form.valid) {
-      this.dialogRef.close({
+      this.listBlogsService.updatePostData({
         title: this.form.value.title,
         description: this.form.value.description,
-        textarea: this.form.value.textarea
-      });
+        textarea: this.form.value.textarea,
+        userName: 'John Dow',
+        datePost: new Date()
+      })
       this.form.reset();
+      this.dialogRef.close();
       Object.values(this.form.controls).forEach(value => {
         value.setErrors(null);
       })

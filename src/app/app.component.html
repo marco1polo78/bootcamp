@@ -1,23 +1,2 @@
-<header>
-  <h1>
-    My Blog
-  </h1>
-  <nav>
-    <a>Home</a>
-    <a (click)="openDialog()">New Article</a>
-    <a>User Name</a>
-  </nav>
-</header>
-<div class="content">
-  <div class="content__newsfeed">
-    <app-post *ngFor="let p of posts" [post]="p"></app-post>
-  </div>
-  <aside class="content__tagbar">
-    <h3>
-      Popular Tags
-    </h3>
-    <p>
-      {{(listTags).length ? (listTags).toString() : 'No tags are here... yet'}}
-    </p>
-  </aside>
-</div>
+<app-header></app-header>
+<app-blogs-feed></app-blogs-feed>

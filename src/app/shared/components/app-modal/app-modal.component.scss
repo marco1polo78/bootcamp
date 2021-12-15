@@ -1,3 +1,5 @@
+@import '/src/styles/variables';
+
 form {
   height: 100%;
   display: flex;
@@ -9,42 +11,29 @@ form {
   }
 
   ::ng-deep .mat-form-field {
-    .mat-input-element {
-      color: slategray;
-    }
-
-    .mat-form-field-label {
-      color: slategray;
-    }
-
-    .mat-form-field-underline {
-      background-color: slategray;
-    }
-
-    .mat-form-field-ripple {
-      background-color: slategray;
-    }
-
+    .mat-input-element,
+    .mat-form-field-label,
     .mat-form-field-required-marker {
-      color: slategray;
+      color: $base-color-form;
+    }
+
+    .mat-form-field-underline,
+    
+    .mat-form-field-ripple
+    .mat-form-field-ripple {
+      background-color: $base-color-form;
     }
   }
 
-  ::ng-deep .mat-form-field.mat-form-field-invalid {
-    .mat-input-element {
-      color: red;
-    }
-
+  ::ng-deep .mat-form-field-invalid {
+    .mat-input-element,
+    .mat-form-field-required-marker,
     .mat-form-field-label {
-      color: red;
-    }
-
-    .mat-form-field-required-marker {
-      color: red;
+      color: $base-color-form-invalid;
     }
 
     .mat-form-field-ripple {
-      background-color: red;
+      background-color: $base-color-form-invalid;
     }
   }
 
@@ -62,8 +51,7 @@ form {
     }
 
     button[type=submit] {
-      background-color: #22b422;
+      background-color: $background-color-submit-button;
     }
   }
-
 }
