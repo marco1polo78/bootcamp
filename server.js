@@ -1,7 +1,7 @@
 // Use Express
 const express = require("express");
 const app = express();
-const routes = require('./routes/routes');
+const routes = require('./api/routes');
 
 const distDir = __dirname + "/dist/bootcamp/";
 const pathToIndex = distDir + '/index.html'
