@@ -1,30 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Post } from 'src/app/shared/interfaces/post';
-
-const posts: Post[] = [
-  {
-      userName: 'John Dow',
-      datePost: new Date('2021-11-07T11:55:36.244Z'),
-      title: 'NATURAL LANGUAGE INTERFACE ACCESSIBILITY',
-      description: 'Spoken interaction with mobile devices and consumer',
-      textarea: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus autem suscipit velit! Dolor dolorum, eaque voluptate voluptas vero possimus quaerat.'
-  },
-  {
-      userName: 'John Dow',
-      datePost: new Date('2021-11-07T11:55:36.244Z'),
-      title: 'Accessibility of Remote Meeting',
-      description: 'The impactvof COVID-19 has seen a substantial increase',
-      textarea: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus autem suscipit velit! Dolor dolorum, eaque voluptate voluptas vero possimus quaerat.'
-  }
-];
-
 @Injectable({
   providedIn: 'root'
 })
 
 export class ListBlogsService {
-  private subject = new BehaviorSubject<Post[]>(posts);
+  static getPostsListFromServer(): Post[] {
+    throw new Error('Method not implemented.');
+  }
+  private subject = new BehaviorSubject<Post[]>([]);
+
+  constructor(private http: HttpClient) { }
+
+  public getPostsListFromServer(): Observable<Post[]> {
+    return this.http.get<any>('http://localhost:8080/api/posts');
+  }
 
   public getPostData(): Observable<Post[]> {
     return this.subject.asObservable();

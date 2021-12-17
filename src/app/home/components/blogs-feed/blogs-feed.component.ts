@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { Post } from '../../../shared/interfaces/post';
 import { ListBlogsService } from '../../services/list-blogs.service';
 
@@ -11,16 +11,12 @@ import { ListBlogsService } from '../../services/list-blogs.service';
 })
 export class BlogsFeedComponent implements OnInit{
   streamPostsSubscription!: Subscription;
-  posts: Post[] = [];
+  posts!: Observable<Post[]>;
   listTags: string[] = [];
 
   constructor(private listBlogsService: ListBlogsService) { }
 
   ngOnInit(): void {
-    this.streamPostsSubscription = this.listBlogsService
-      .getPostData()
-      .subscribe((data: Post[]) => {
-        this.posts = data;
-      })
+    this.posts = this.listBlogsService.getPostsListFromServer();
   }
 }
