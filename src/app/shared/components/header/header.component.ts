@@ -17,16 +17,6 @@ export class HeaderComponent {
       autoFocus: false
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      // if (result)
-      //   this.posts.unshift({
-      //         'userName': 'John Dow',
-      //         'datePost': new Date(),
-      //         'title': result.title,
-      //         'description': result.description,
-      //         'textArea': ''
-      //       });
-    });
+    dialogRef.afterClosed();
   }
 }
