@@ -1,11 +1,16 @@
 // Use Express
 const express = require("express");
+const bodyParser = require('body-parser');
 const app = express();
-const routes = require('./api/routes');
+const routes = require('./api/routes/routes');
+
+//db
+const dbConnect = require('./api/db/dbconection');
 
 const distDir = __dirname + "/dist/bootcamp/";
 const pathToIndex = distDir + '/index.html'
 app.use(express.static(distDir));
+app.use(bodyParser.json());
 
 app.use('/api', routes)
 
@@ -18,7 +23,8 @@ app.use((error, req, res) => {
 })
 
 // Init the server
-const server = app.listen(process.env.PORT || 8080, function () {
+const server = app.listen(process.env.PORT || 8080, async () => {
     const port = server.address().port;
+    await dbConnect();
     console.log(`App now running on port http://localhost:${port}`);
 });

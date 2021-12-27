@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from 'src/app/shared/interfaces/post';
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,18 @@ export class ListBlogsService {
     return this.subject.asObservable();
   }
 
-  public updatePostData(post: Post): void {
-    this.subject.next([post, ...this.subject.getValue()]);
+  public updatePostData(post: Post) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'});
+    let options = { headers: headers };
+    return this.http.post('http://localhost:8080/api/posts', post, options).subscribe(
+        res => {
+          res
+          this.getPostData();
+        },
+        err => {
+            console.log(err.message);
+        }
+    );
   }
 }
