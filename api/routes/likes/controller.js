@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const { Post, Like } = require('../../db/models/posts');
+const { Post } = require('../../db/models/posts');
+const { Like } = require('../../db/models/likes');
 
 async function addLike(data) {
     const like = new Like({

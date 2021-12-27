@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getPosts, addPosts, removePost } = require('./controller');
+const { getPosts, addPosts, removePost, updatePost } = require('./controller');
 
 router
     .get('/', async (req, res) => {
@@ -9,6 +9,9 @@ router
     })
     .post('/', async (req, res) => {
         res.send(await addPosts(req.body));
+    })
+    .put('/:id', async (req, res) => {
+        res.send(await updatePost(req.params.id, req.body));
     })
     .delete('/:id', async (req, res) => {
         console.log(req.params);
