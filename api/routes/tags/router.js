@@ -8,7 +8,6 @@ router
         res.send(await addTag(req.body));
     })
     .delete('/:id', async (req, res) => {
-        console.log(req.params);
         res.send(await removeTag(req.params.id));
     })
 
