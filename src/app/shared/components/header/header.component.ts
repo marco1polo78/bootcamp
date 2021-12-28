@@ -1,7 +1,17 @@
-import { Component } from '@angular/core';
-import { AppModalComponent } from '../app-modal/app-modal.component'
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import {
+  Router,
+  Event,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart 
+} from '@angular/router';
+
+
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 const menu = [
   {
@@ -23,18 +33,28 @@ const menu = [
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent{
   menu = menu;
-  constructor(public dialog: MatDialog, private router: Router) { }
+  loading = false;
+  constructor(public dialog: MatDialog, private router: Router) {
+    this.router.events.subscribe(async (event: Event) => {
+      switch (true) {
+        case event instanceof NavigationStart: {
+          this.loading = true;
+          break;
+        }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(AppModalComponent, {
-      width: '500px',
-      height: '500px',
-      autoFocus: false
+        case event instanceof NavigationEnd:
+        case event instanceof NavigationCancel:
+        case event instanceof NavigationError: {
+          this.loading = false;
+          break;
+        }
+        default: {
+          break;
+        }
+      }
     });
-
-    dialogRef.afterClosed();
   }
 
   public onClick(route: string) {
