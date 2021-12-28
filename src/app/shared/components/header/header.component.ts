@@ -8,10 +8,8 @@ import {
   NavigationError,
   NavigationStart 
 } from '@angular/router';
-
-
-import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { of } from "rxjs";
+import { delay, concatMap,  tap } from "rxjs/operators";
 
 const menu = [
   {
@@ -38,26 +36,17 @@ export class HeaderComponent{
   loading = false;
   constructor(public dialog: MatDialog, private router: Router) {
     this.router.events.subscribe(async (event: Event) => {
-      switch (true) {
-        case event instanceof NavigationStart: {
-          this.loading = true;
-          break;
-        }
-
-        case event instanceof NavigationEnd:
-        case event instanceof NavigationCancel:
-        case event instanceof NavigationError: {
-          this.loading = false;
-          break;
-        }
-        default: {
-          break;
-        }
-      }
+      if (event instanceof NavigationStart)
+        this.loading = true;
+      if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError)
+        this.loading = false;
     });
   }
 
   public onClick(route: string) {
-    void this.router.navigate([route]);
+    this.loading = true; //for local testing
+    setTimeout(() => {
+      void this.router.navigate([route]);
+    }, 1500)
   }
 }
