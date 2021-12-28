@@ -2,7 +2,7 @@ const { Post } = require('../../db/models/posts');
 const { Like } = require('../../db/models/likes');
 const { Comment } = require('../../db/models/comments');
 
-async function getPosts() {
+async function listPosts() {
     return await Post.find({});
 }
 
@@ -31,7 +31,7 @@ async function removePost(id) {
 
 module.exports = {
     addPosts,
-    getPosts,
+    listPosts,
     removePost,
     updatePost
 }
