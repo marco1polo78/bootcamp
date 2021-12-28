@@ -8,17 +8,23 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { NewArticleComponent } from './new-article/new-article.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NewArticleComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     HomeModule,
-    HeaderModule
+    HeaderModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

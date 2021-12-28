@@ -3,8 +3,9 @@
       My Blog
     </h1>
     <nav>
-      <a>Home</a>
+      <a *ngFor ="let item of menu" (click)="onClick(item.route)">{{item.title}}</a>
+      <!-- <a (click)="onClick('home')">Home</a>
       <a (click)="openDialog()">New Article</a>
-      <a>User Name</a>
+      <a>User Name</a> -->
     </nav>
 </header>
