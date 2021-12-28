@@ -10,7 +10,10 @@ const commentSchema = Schema({
         type: mongoose.Types.ObjectId,
         required: true
     },
-    postId: { type: Schema.Types.ObjectId, ref: 'Post' }
+    postId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Post'
+    }
 });
 
 const Comment = mongoose.model('Comment', commentSchema);

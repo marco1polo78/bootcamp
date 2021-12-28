@@ -8,7 +8,7 @@ router
         console.log(req.body);
         res.send(await addComment(req.body));
     })
-    .put('/:id', async (req, res) => {
+    .patch('/:id', async (req, res) => {
         res.send(await updateComment(req.params.id, req.body));
     })
     .delete('/:id', async (req, res) => {

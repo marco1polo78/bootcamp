@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const { getPosts, addPosts, removePost, updatePost } = require('./controller');
+const { listPosts, addPosts, removePost, updatePost } = require('./controller');
 
 router
     .get('/', async (req, res) => {
-        res.send(await getPosts())
+        res.send(await listPosts())
     })
     .post('/', async (req, res) => {
         res.send(await addPosts(req.body));
     })
-    .put('/:id', async (req, res) => {
+    .patch('/:id', async (req, res) => {
         res.send(await updatePost(req.params.id, req.body));
     })
     .delete('/:id', async (req, res) => {

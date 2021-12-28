@@ -6,7 +6,10 @@ const likeSchema = Schema({
         type: mongoose.Types.ObjectId,
         required: true
     },
-    postId: { type: Schema.Types.ObjectId, ref: 'Post' }
+    postId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Post'
+    }
 })
 
 const Like = mongoose.model('Like', likeSchema);

@@ -7,9 +7,6 @@ async function addLike(data) {
         author: new mongoose.Types.ObjectId(data.userId),
         postId: new mongoose.Types.ObjectId(data.postId),
       });
-    like.save((err) => {
-        console.log(like);
-    })
     await Post.updateOne({_id: like.postId}, {$push: {likes: like._id}})
     return {
         status: 200
@@ -21,7 +18,7 @@ async function removeLike(id) {
     await Post.updateOne({_id: like.postId}, {$pull: {likes: like._id}});
     await Like.remove({_id: like._id});
     return {
-        status: 400
+        status: 200
     }
 }
 

@@ -3,20 +3,19 @@ const { Post } = require('../../db/models/posts');
 const { Tag } = require('../../db/models/tags');
 
 async function addTag(data) {
-    const tag = new Tag({
+    new Tag({
         tagName: data.tagName,
         postId: [],
       });
-    tag.save();
     return {
         status: 200
     };
 }
 
 async function removeTag(id) {
-    await Tag.remove({_id: Tag._id});
+    await Tag.remove({_id: id});
     return {
-        status: 400
+        status: 200
     }
 }
 
