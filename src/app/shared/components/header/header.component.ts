@@ -44,9 +44,6 @@ export class HeaderComponent{
   }
 
   public onClick(route: string) {
-    this.loading = true; //for local testing
-    setTimeout(() => {
-      void this.router.navigate([route]);
-    }, 1500)
+    void this.router.navigate([route]);
   }
 }
