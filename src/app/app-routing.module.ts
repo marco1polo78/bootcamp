@@ -8,7 +8,8 @@ import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
   {
     path: 'home',
-    component: BlogsFeedComponent
+    component: BlogsFeedComponent,
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'newArticle',
@@ -28,7 +29,8 @@ const routes: Routes = [
   declarations: [],
   imports: [
     RouterModule.forRoot(routes, {
-      initialNavigation: 'enabled'
+      initialNavigation: 'enabled',
+      onSameUrlNavigation: 'reload'
     })
   ],
   exports: [RouterModule]

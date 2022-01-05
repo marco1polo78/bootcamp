@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post } from '../../../shared/interfaces/post';
 import { ListBlogsService } from '../../services/list-blogs.service';
 
@@ -12,9 +13,10 @@ export class BlogsFeedComponent implements OnInit{
   posts!: Post[];
   listTags: string[] = [];
 
-  constructor(private listBlogsService: ListBlogsService) { }
+  constructor(private listBlogsService: ListBlogsService, private router: Router) { }
 
   ngOnInit(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.getPosts();
   }
 
