@@ -24,7 +24,7 @@ export class NewArticleComponent {
 
   submit() {
     if (this.form.valid) {
-      this.listBlogsService.updatePostData({
+      this.listBlogsService.createPosts({
         title: this.form.value.title,
         description: this.form.value.description,
         textarea: this.form.value.textarea,
@@ -44,16 +44,8 @@ export class NewArticleComponent {
     this.form.reset();
   }
 
-  get title(): any {
-    return this.form.get('title');
-  }
-
-  get description(): any {
-    return this.form.get('description');
-  }
-
-  get textarea(): any {
-    return this.form.get('textarea');
+  isFormStatus(formControl: string) {
+    return this.form.get(formControl)?.status === 'INVALID';
   }
 
 }

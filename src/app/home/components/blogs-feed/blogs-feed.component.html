@@ -1,6 +1,6 @@
 <div class="content">
   <div class="content__newsfeed">
-    <app-post *ngFor="let p of (posts | async)" [post]="p"></app-post>
+    <app-post *ngFor="let p of posts" [post]="p"></app-post>
   </div>
   <aside class="content__tagbar">
     <h3>

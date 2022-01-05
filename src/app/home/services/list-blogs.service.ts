@@ -1,28 +1,26 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from 'src/app/shared/interfaces/post';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class ListBlogsService {
-  static getPostsListFromServer(): Post[] {
-    throw new Error('Method not implemented.');
-  }
-  private subject = new BehaviorSubject<Post[]>([]);
-
   constructor(private http: HttpClient) { }
 
-  public getPostsListFromServer(): Observable<Post[]> {
+  public getPosts(): Observable<Post[]> {
     return this.http.get<any>('http://localhost:8080/api/posts');
   }
 
-  public getPostData(): Observable<Post[]> {
-    return this.subject.asObservable();
-  }
-
-  public updatePostData(post: Post): void {
-    this.subject.next([post, ...this.subject.getValue()]);
+  public createPosts(post: Post): void {
+    this.http.post('http://localhost:8080/api/posts', JSON.stringify(post), httpOptions).subscribe({
+      error: err => { console.log(err) }
+    });
   }
 }

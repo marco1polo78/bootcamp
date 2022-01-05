@@ -58,6 +58,6 @@ export class HeaderComponent{
   }
 
   public onClick(route: string) {
-    void this.router.navigate([route]);
+    this.router.navigate([route]);
   }
 }

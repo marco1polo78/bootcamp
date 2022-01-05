@@ -4,7 +4,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Title</mat-label>
           <input matInput placeholder="Main title for new post" formControlName="title" autocomplete="off">
-          <mat-error *ngIf="title.touched && title.invalid">
+          <mat-error *ngIf="isFormStatus('title')">
             Your title is short
           </mat-error>
         </mat-form-field>
@@ -13,14 +13,14 @@
         <mat-form-field appearance="fill">
           <mat-label>Description</mat-label>
           <input matInput placeholder="Short description for post" formControlName="description" autocomplete="off">
-          <mat-error *ngIf="description.touched && description.invalid">
+          <mat-error *ngIf="isFormStatus('description')">
             Your description is short
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Post message</mat-label>
           <textarea matInput placeholder="" formControlName="textarea"></textarea>
-          <mat-error *ngIf="textarea.touched && textarea.invalid">
+          <mat-error *ngIf="isFormStatus('textarea')">
             Your post message is short
           </mat-error>
         </mat-form-field>
