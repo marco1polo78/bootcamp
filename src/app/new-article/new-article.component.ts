@@ -29,7 +29,8 @@ export class NewArticleComponent {
         description: this.form.value.description,
         textarea: this.form.value.textarea,
         userName: 'John Dow',
-        datePost: new Date()
+        datePost: new Date(),
+        countLikes: 0
       })
       this.form.reset();
       this.router.navigate(['home']);

@@ -18,9 +18,11 @@ export class ListBlogsService {
     return this.http.get<any>('http://localhost:8080/api/posts');
   }
 
-  public createPosts(post: Post): void {
-    this.http.post('http://localhost:8080/api/posts', JSON.stringify(post), httpOptions).subscribe({
-      error: err => { console.log(err) }
-    });
+  public createPosts(post: Post) {
+    return this.http.post('http://localhost:8080/api/posts', JSON.stringify(post), httpOptions);
+  }
+
+  public updatePost(id: string) {
+    return this.http.patch(`http://localhost:8080/api/posts/${id}`, {}, httpOptions);
   }
 }

@@ -32,8 +32,9 @@ const menu = [
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent{
-  menu = menu;
-  loading = false;
+  menu: Array<any> = menu;
+  loading: boolean = false;
+
   constructor(public dialog: MatDialog, private router: Router) {
     this.router.events.subscribe(async (event: Event) => {
       if (event instanceof NavigationStart)
@@ -43,7 +44,7 @@ export class HeaderComponent{
     });
   }
 
-  public onClick(route: string) {
+  public navigate(route: string) {
     this.router.navigate([route]);
   }
 }

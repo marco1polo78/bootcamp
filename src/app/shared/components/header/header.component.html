@@ -3,7 +3,7 @@
       My Blog
     </h1>
     <nav>
-      <a *ngFor ="let item of menu" (click)="onClick(item.route)">{{item.title}}</a>
+      <a *ngFor ="let item of menu" (click)="navigate(item.route)">{{item.title}}</a>
     </nav>
 </header>
 <mat-progress-bar

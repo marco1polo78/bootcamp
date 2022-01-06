@@ -16,7 +16,6 @@ export class BlogsFeedComponent implements OnInit{
   constructor(private listBlogsService: ListBlogsService, private router: Router) { }
 
   ngOnInit(): void {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.getPosts();
   }
 
