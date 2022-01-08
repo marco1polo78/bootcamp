@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppModalComponent } from './app-modal.component';
+import { NewArticleComponent } from './new-article.component'
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -9,7 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
-  declarations: [AppModalComponent],
+  declarations: [NewArticleComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -17,8 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
-    MatFormFieldModule,
+    MatFormFieldModule
   ],
-  exports: [AppModalComponent]
+  exports: [NewArticleComponent]
 })
-export class AppModalModule { }
+export class NewArticleModule { }

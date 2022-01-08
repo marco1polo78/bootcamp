@@ -7,11 +7,13 @@ import { BlogsFeedComponent } from './components/blogs-feed/blogs-feed.component
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { LikeComponent } from './components/like/like.component';
 
 @NgModule({
   declarations: [
     PostComponent,
-    BlogsFeedComponent
+    BlogsFeedComponent,
+    LikeComponent
   ],
   imports: [
     CommonModule,

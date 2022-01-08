@@ -3,5 +3,6 @@ export interface Post {
     datePost: string | Date,
     title: string,
     description: string,
-    textarea: string
+    textarea: string,
+    countLikes: number
 }

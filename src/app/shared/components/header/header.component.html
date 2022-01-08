@@ -3,8 +3,9 @@
       My Blog
     </h1>
     <nav>
-      <a>Home</a>
-      <a (click)="openDialog()">New Article</a>
-      <a>User Name</a>
+      <a *ngFor ="let item of menu" (click)="navigate(item.route)">{{item.title}}</a>
     </nav>
 </header>
+<mat-progress-bar
+  *ngIf="loading" mode="indeterminate">
+</mat-progress-bar>

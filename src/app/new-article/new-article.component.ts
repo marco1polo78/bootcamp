@@ -1,21 +1,20 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ListBlogsService } from '../../../home/services/list-blogs.service';
+import { ListBlogsService } from '../home/services/list-blogs.service'
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-app-modal',
-  templateUrl: './app-modal.component.html',
-  styleUrls: ['./app-modal.component.scss']
+  selector: 'app-new-article',
+  templateUrl: './new-article.component.html',
+  styleUrls: ['./new-article.component.scss']
 })
 
-export class AppModalComponent {
+export class NewArticleComponent {
   form!: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<AppModalComponent>,
     private listBlogsService: ListBlogsService,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    private router: Router) {
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.minLength(3)]),
       description: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -25,15 +24,16 @@ export class AppModalComponent {
 
   submit() {
     if (this.form.valid) {
-      this.listBlogsService.updatePostData({
+      this.listBlogsService.createPosts({
         title: this.form.value.title,
         description: this.form.value.description,
         textarea: this.form.value.textarea,
         userName: 'John Dow',
-        datePost: new Date()
+        datePost: new Date(),
+        countLikes: 0
       })
       this.form.reset();
-      this.dialogRef.close();
+      this.router.navigate(['home']);
       Object.values(this.form.controls).forEach(value => {
         value.setErrors(null);
       })
@@ -41,20 +41,12 @@ export class AppModalComponent {
   }
 
   close() {
-    this.dialogRef.close();
+    this.router.navigate(['home']);
     this.form.reset();
   }
 
-  get title(): any {
-    return this.form.get('title');
-  }
-
-  get description(): any {
-    return this.form.get('description');
-  }
-
-  get textarea(): any {
-    return this.form.get('textarea');
+  isFormStatus(formControl: string) {
+    return this.form.get(formControl)?.status === 'INVALID';
   }
 
 }

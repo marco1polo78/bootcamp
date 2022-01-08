@@ -5,9 +5,7 @@
             <mat-card-title class="post-card-name">{{post.userName}}</mat-card-title>
             <mat-card-subtitle class="post-card-date">{{post.datePost | date :'longDate' }}</mat-card-subtitle>
         </mat-card-header>
-        <button mat-icon-button color="warn">
-            <mat-icon>favorite</mat-icon>
-        </button>
+        <app-like [like] = "{count: post.countLikes, beLiked: false}"></app-like>
     </div>
     <mat-card-content>
         <h3>
