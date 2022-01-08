@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { Post } from '../../../shared/interfaces/post';
 import { ListBlogsService } from '../../services/list-blogs.service';
 
@@ -10,13 +10,21 @@ import { ListBlogsService } from '../../services/list-blogs.service';
   styleUrls: ['./blogs-feed.component.scss']
 })
 export class BlogsFeedComponent implements OnInit{
-  streamPostsSubscription!: Subscription;
-  posts!: Observable<Post[]>;
+  posts!: Post[];
   listTags: string[] = [];
 
-  constructor(private listBlogsService: ListBlogsService) { }
+  constructor(private listBlogsService: ListBlogsService, private router: Router) { }
 
   ngOnInit(): void {
-    this.posts = this.listBlogsService.getPostsListFromServer();
+    this.getPosts();
+  }
+
+  public getPosts(): void {
+    this.listBlogsService.getPosts().subscribe(
+      {
+        next: data => { this.posts = data },
+        error: err => { console.log(err) }
+      }
+    );
   }
 }

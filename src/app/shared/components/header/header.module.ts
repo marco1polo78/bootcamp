@@ -2,15 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HeaderComponent } from './header.component';
-import { AppModalModule } from '../app-modal/app-modal.module';
-
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [HeaderComponent],
   imports: [
     CommonModule,
-    AppModalModule
+    MatProgressBarModule
   ],
   exports: [HeaderComponent]
 })
