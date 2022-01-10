@@ -4,7 +4,6 @@ async function getPostsList(req, res, next) {
     const {
         tag
     } = req.query;
-    console.log(tag);
     try {
         const options = {
             tag
