@@ -1,6 +1,3 @@
-// const { Post } = require('../../db/models/posts');
-// const { Like } = require('../../db/models/likes');
-// const { Comment } = require('../../db/models/comments');
 const { posts } = require('../../services');
 
 async function getPostsList(req, res, next) {
