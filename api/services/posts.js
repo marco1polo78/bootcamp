@@ -1,7 +1,7 @@
 const { postsDao } = require('../dao/index');
 
-async function getPostsList () {
-    const posts = await postsDao.getPostsList();
+async function getPostsList (options) {
+    const posts = await postsDao.getPostsList(options);
     return {
         data: posts
     };

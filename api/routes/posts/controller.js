@@ -1,8 +1,15 @@
 const { posts } = require('../../services');
 
 async function getPostsList(req, res, next) {
+    const {
+        tag
+    } = req.query;
+    console.log(tag);
     try {
-        const result = await posts.getPostsList();
+        const options = {
+            tag
+        };
+        const result = await posts.getPostsList(options);
         res.status(200).send(result.data);
     } catch (err) {
         res.status(500).send({
@@ -74,9 +81,6 @@ async function removePost(req, res, next) {
     try {
         const options = { _id };
         const result = posts.removePost(options)
-        // await Post.remove({ _id: id });
-        // await Like.find({ postId: id }).remove({});
-        // await Comment.find({ postId: id }).remove({});
         res.status(200).send(result.data);
     } catch (err) {
         res.status(500).send({

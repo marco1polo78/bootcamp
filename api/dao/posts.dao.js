@@ -6,8 +6,13 @@ const { Post } = require('../db/models/posts');
 const { Comment } = require('../db/models/comments');
 const { Like } = require('../db/models/likes');
 
-async function getPostsList() {
-    const results = await Post.find({});
+async function getPostsList(options) {
+    const params = {};
+    if (options.tag) {
+        const postsByTag = await tagsDao.findByName({tagName: options.tag});
+        params._id = { $in: postsByTag.postId };
+    }
+    const results = await Post.find(params);
     return results;
 }
 
@@ -16,10 +21,16 @@ async function addPost(options) {
     delete options.tags;
     const post = await Post.create(options);
     await async.mapSeries(tags, async tag => {
-        const result = await tagsDao.addTag({tagName: tag, postId: post._id});
+        let result;
+        if (await tagsDao.findByName({tagName: tag})) {
+            result = await tagsDao.updateTagPostId({tagName: tag, postId: post._id});
+        } else {
+            result = await tagsDao.addTag({tagName: tag, postId: post._id});
+        }
         await Post.findOneAndUpdate({_id: post._id}, { $push: { tags: result._id}});
     });
-    return post;
+    const result = await Post.find({_id: post._id})
+    return result;
 }
 
 async function updatePost({_id, options}) {
