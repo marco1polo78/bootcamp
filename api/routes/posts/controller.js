@@ -64,7 +64,7 @@ async function updatePost(req, res, next) {
                 title,
                 description,
                 textarea,
-                // tags
+                tags
             }
         };
         await posts.updatePost(options);
