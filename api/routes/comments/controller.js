@@ -1,32 +1,59 @@
-const mongoose = require('mongoose');
-const { Post } = require('../../db/models/posts');
-const { Comment } = require('../../db/models/comments');
+const { comments } = require('../../services');
 
-async function addComment(data) {
-    const comment = new Comment({
-        author: new mongoose.Types.ObjectId(data.userId),
-        postId: new mongoose.Types.ObjectId(data.postId),
-        textMessage: data.textMessage
-      });
-    await Post.updateOne({_id: comment.postId}, {$push: {comments: comment._id}})
-    return {
-        status: 200
-    };
-}
-
-async function removeComment(id) {
-    const comment = await Comment.findById(id);
-    await Post.updateOne({_id: comment.postId}, {$pull: {comments: comment._id}});
-    await Comment.remove({_id: comment._id});
-    return {
-        status: 200
+async function addComment(req, res, next) {
+    const {
+        authorId,
+        textMessage,
+        createdAt,
+        postId
+    } = req.body;
+    try {
+        const options = {
+            authorId,
+            textMessage,
+            createdAt,
+            postId
+        };
+        const result = await comments.addComment(options);
+        res.status(200).send(result.data);
+    } catch (err) {
+        res.status(500).send({
+            error: err || 'Something went wrong.'
+        });
     }
 }
 
-async function updateComment(id, data) {
-    await Comment.findByIdAndUpdate(id, data);
-    return {
-        status: 200
+async function removeComment(req, res, next) {
+    const { _id } = req.params;
+    try {
+        await comments.removeComment({_id});
+        res.status(200).send();
+    } catch (err) {
+        res.status(500).send({
+            error: err || 'Something went wrong.'
+        });
+    }
+}
+
+async function updateComment(req, res, next) {
+    const { _id } = req.params;
+    const {
+        authorId,
+        textMessage,
+        createdAt
+    } = req.body;
+    try {
+        const options = {
+            authorId,
+            textMessage,
+            createdAt
+        };
+        const result = await updateComment({_id, options});
+        res.status(200).send(result.data);
+    } catch (err) {
+        res.status(500).send({
+            error: err || 'Something went wrong.'
+        });
     }
 }
 
