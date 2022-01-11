@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const postSchema = Schema({
-    userName: {
+    authorId: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
@@ -35,8 +35,7 @@ const postSchema = Schema({
     }],
     tags: [{
         type: Schema.Types.ObjectId,
-        ref: 'Tag',
-        required: true
+        ref: 'Tag'
     }]
 });
 

@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const { addUser } = require('./controller');
+const { addUser, getUserById } = require('./controller');
 
 router
-    .post('/', async (req, res) => {
-        res.send(await addUser(req.body));
-    })
+    .post('/', addUser)
+    .get('/:_id', getUserById)
+
 
 module.exports = router;

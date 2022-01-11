@@ -1,25 +1,16 @@
-const mongoose = require('mongoose');
-const { Post } = require('../../db/models/posts');
-const { Tag } = require('../../db/models/tags');
+const { tags } = require('../../services/index');
 
-async function addTag(data) {
-    new Tag({
-        tagName: data.tagName,
-        postId: [],
-      });
-    return {
-        status: 200
-    };
-}
-
-async function removeTag(id) {
-    await Tag.remove({_id: id});
-    return {
-        status: 200
+async function getTagsList(req, res, next) {
+    try {
+        const result = await tags.getTagsList();
+        res.status(200).send(result.data);
+    } catch (err) {
+        res.status(500).send({
+            error: err || 'Something went wrong.'
+        })
     }
 }
 
 module.exports = {
-    addTag,
-    removeTag
+    getTagsList
 }
