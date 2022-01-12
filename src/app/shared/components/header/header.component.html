@@ -1,11 +1,17 @@
 <header>
-    <h1>
-      My Blog
-    </h1>
-    <nav>
-      <a *ngFor ="let item of menu" (click)="navigate(item.route)">{{item.title}}</a>
-    </nav>
+  <h1>My Blog</h1>
+  <nav>
+    <button mat-button (click)="navigate('home')">Home</button>
+    <button mat-button (click)="navigate('newArticle')">New article</button>
+    <button mat-button *ngIf="!logged; else elseLogged" (click)="login()">
+      Log in
+    </button>
+    <ng-template #elseLogged>
+      <button mat-button [matMenuTriggerFor]="profile">User Name</button>
+      <mat-menu #profile="matMenu" yPosition="above">
+        <button mat-menu-item (click)="signOut()">Sign out</button>
+      </mat-menu>
+    </ng-template>
+  </nav>
 </header>
-<mat-progress-bar
-  *ngIf="loading" mode="indeterminate">
-</mat-progress-bar>
+<mat-progress-bar *ngIf="loading" mode="indeterminate"> </mat-progress-bar>

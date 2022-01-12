@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="container-form">
+        <form class="my-form" [formGroup]="form">
+            <mat-form-field class="full-width">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First name" name="firstName" required formControlName="firstName">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Last Name" name="lastName" required formControlName="lastName">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Login</mat-label>
+                <input matInput placeholder="Login" name="login" formControlName="login">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" name="emailAddress" formControlName="emailAddress">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" name="password" formControlName="password"> 
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="container-actions">
+        <button mat-raised-button type="submit" (click)="signup()">Sign Up</button>
+    </div>
+</div>
