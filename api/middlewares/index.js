@@ -16,10 +16,10 @@ async function auth(req, res, next) {
     try {
         const token = req.headers.authorization;
         const data = jsonwebtoken.verify(token, 'secret');
-        req.ctx.requester = data;
+        req.ctx = { requester: data };
         next();
     } catch (err) {
-        next('User is not authorized');
+        next({error: 'User is not authorized'});
     }
 }
 

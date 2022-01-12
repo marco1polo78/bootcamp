@@ -17,7 +17,7 @@ async function addUser(req, res, next) {
             password
         };
         const result = await users.addUser(options);
-        res.status(200).send(result.data);
+        res.status(200).send(result);
     } catch (err) {
         res.status(500).send({
             error: err || 'Something went wrong.'
@@ -48,7 +48,7 @@ async function login(req, res, next) {
             password
         };
         const result = await users.login(options);
-        res.status(result.status || 200).send(result.data);
+        res.status(result.status || 200).send(result);
     } catch (err) {
         res.status(500).send({
             error: err || 'Something went wrong.'

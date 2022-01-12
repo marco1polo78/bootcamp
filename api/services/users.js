@@ -36,7 +36,7 @@ async function login({login, password}) {
         if (bcrypt.compareSync(password, user.password)) {
             const token = jsonwebtoken.sign({login, _id: user._id}, 'secret');
             return {
-                data: token
+                token: token
             };
         } else {
             return {
