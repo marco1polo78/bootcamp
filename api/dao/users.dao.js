@@ -14,7 +14,17 @@ async function getUserById({ _id }) {
     }
 }
 
+async function getUserByName({login}) {
+    try {
+        const user = await User.findOne({login});
+        return user;
+    } catch (err) {
+        throw err;
+    }
+}
+
 module.exports = {
     addUser,
-    getUserById
+    getUserById,
+    getUserByName
 }

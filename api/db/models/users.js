@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = Schema({
-    userName: {
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
         type: String,
         required: true
     },
@@ -13,12 +17,7 @@ const userSchema = Schema({
     password: {
         type: String,
         required: true
-    },
-    posts: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Post',
-        required: true
-    }]
+    }
 });
 
 const User = mongoose.model('User', userSchema)

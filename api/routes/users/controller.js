@@ -4,6 +4,7 @@ async function addUser(req, res, next) {
     const {
         firstName,
         lastName,
+        login,
         emailAddress,
         password
     } = req.body;
@@ -11,6 +12,7 @@ async function addUser(req, res, next) {
         const options = {
             firstName,
             lastName,
+            login,
             emailAddress,
             password
         };
@@ -35,7 +37,27 @@ async function getUserById(req, res, next) {
     }
 }
 
+async function login(req, res, next) {
+    const {
+        login,
+        password
+    } = req.body;
+    try {
+        const options = {
+            login,
+            password
+        };
+        const result = await users.login(options);
+        res.status(result.status || 200).send(result.data);
+    } catch (err) {
+        res.status(500).send({
+            error: err || 'Something went wrong.'
+        });
+    }
+}
+
 module.exports = {
     addUser,
-    getUserById
+    getUserById,
+    login
 }
