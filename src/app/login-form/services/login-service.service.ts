@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LocalStorageRefService } from 'src/app/shared/services/local-storage-ref.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -10,22 +10,18 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class LoginServiceService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private localStorageRefService: LocalStorageRefService) {}
 
   public login(data: Object) {
     return this.http
       .post('http://localhost:8080/api/users/login', data, httpOptions)
       .subscribe({
-        next: (data) => {
-          this.setProfile(data);
+        next: (data: any) => {
+          this.localStorageRefService.setInfo(data.token);
         },
         error: (err) => {
           console.log(err);
         },
       });
-  }
-
-  private setProfile(data: any) {
-    localStorage.setItem('id_token', data.token);
   }
 }

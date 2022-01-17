@@ -2,8 +2,8 @@
   <h1>My Blog</h1>
   <nav>
     <button mat-button (click)="navigate('home')">Home</button>
-    <button mat-button (click)="navigate('newArticle')">New article</button>
-    <button mat-button *ngIf="!logged; else elseLogged" (click)="login()">
+    <button mat-button (click)="navigate('newArticle')" *ngIf="(loggin | async)">New article</button>
+    <button mat-button *ngIf="!(loggin | async); else elseLogged" (click)="login()">
       Log in
     </button>
     <ng-template #elseLogged>
