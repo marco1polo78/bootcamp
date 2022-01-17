@@ -48,7 +48,7 @@ async function updateComment(req, res, next) {
             textMessage,
             createdAt
         };
-        const result = await updateComment({_id, options});
+        const result = await comments.updateComment({_id, options});
         res.status(200).send(result.data);
     } catch (err) {
         res.status(500).send({

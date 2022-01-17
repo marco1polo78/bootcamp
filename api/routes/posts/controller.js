@@ -18,8 +18,8 @@ async function getPostsList(req, res, next) {
 }
 
 async function addPost(req, res, next) {
+    const authorId = req.ctx.requester._id;
     const {
-        authorId,
         datePost,
         title,
         description,
