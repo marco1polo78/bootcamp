@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from 'src/app/shared/interfaces/post';
 
@@ -19,7 +19,10 @@ export class ListBlogsService {
   }
 
   public createPosts(post: Post) {
-    return this.http.post('http://localhost:8080/api/posts', JSON.stringify(post), httpOptions);
+    return this.http.post('http://localhost:8080/api/posts', JSON.stringify(post), httpOptions).subscribe({
+      error: err => {
+        console.log(err);
+      }});
   }
 
   public updatePost(id: string) {
