@@ -1,5 +1,10 @@
 export interface Post {
-    userName: string,
+    _id?: string|undefined,
+    authorId?: {
+        firstName: string,
+        lastName: string
+    },
+    tags: string[],
     datePost: string | Date,
     title: string,
     description: string,

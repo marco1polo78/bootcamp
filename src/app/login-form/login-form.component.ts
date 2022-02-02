@@ -40,7 +40,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
     this.loginServiceService.login(this.form.value);
     this.dialogRef.close();
   }
