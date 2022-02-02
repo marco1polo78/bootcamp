@@ -6,7 +6,6 @@ class UsersController {
 
     public async getItemById(req: Request, res: Response): Promise<any> {
         const { _id } = req.params;
-        console.log(_id);
         try {
             const result = await this.usersService.getItemById(_id);
             res.status(200).send({
@@ -96,9 +95,7 @@ class UsersController {
                 password
             };
             const result = await this.usersService.login(options);
-            res.status(200).send({
-                data: result
-            });
+            res.status(200).send(result);
         } catch (err) {
             res.status(500).send({
                 error: JSON.stringify(err) || 'Something went wrong.'

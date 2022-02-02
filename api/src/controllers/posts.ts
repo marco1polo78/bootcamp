@@ -1,12 +1,17 @@
 import { Request, Response } from "express";
 import { PostsService } from "../services/posts";
 
+
 class PostsController {
     constructor (public postsService: PostsService) {}
 
     public async getList(req: Request, res: Response) {
+        const tags = req.query.tags as string;
         try {
-            const result = await this.postsService.getList();
+            const options = {
+                tags
+            };
+            const result = await this.postsService.getList(options);
             res.status(200).send(result);
         } catch (err) {
             res.status(500).send({
@@ -16,8 +21,8 @@ class PostsController {
     }
 
     public async addItem(req: Request, res: Response): Promise<any> {
+        const authorId = req.body.requester._id;
         const {
-            authorId,
             datePost,
             title,
             description,

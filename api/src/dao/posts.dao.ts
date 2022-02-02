@@ -5,9 +5,15 @@ import { IPost } from '../interfaces/post';
 export class PostsDAO {
   private model: Model<any> = Post;
 
-  public async getList(): Promise<any> {
+  public async getList(options: any): Promise<any> {
     try {
-      const results = await this.model.find({}).populate('authorId', 'firstName lastName');
+      let filter = {};
+      if (options.tags) {
+        filter = { tags: { $all: JSON.parse(options.tags) } };
+      }
+      const results = await this.model
+        .find(filter)
+        .populate('authorId', 'firstName lastName');
       return results;
     } catch (err) {
       throw err;
@@ -74,7 +80,6 @@ export class PostsDAO {
       ]);
       return result;
     } catch (err) {
-      console.log(err);
       throw err;
     }
   }
@@ -93,22 +98,21 @@ export class PostsDAO {
             from: 'users',
             localField: 'authorId',
             foreignField: '_id',
-            pipeline: [{
+            pipeline: [
+              {
                 $project: {
-                    _id: 0,
-                    firstName: 1,
-                    lastName: 1
-                }
-            }],
+                  _id: 0,
+                  firstName: 1,
+                  lastName: 1,
+                },
+              },
+            ],
             as: 'authorId',
           },
         },
       ]);
-      this.model.updateMany({}, )
-      console.log(result);
       return result;
     } catch (err) {
-      console.log(err);
       throw err;
     }
   }

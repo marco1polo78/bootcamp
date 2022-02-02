@@ -3,6 +3,7 @@ import { join, resolve } from 'path';
 import routers from './routes/index';
 import connectDB from './db';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const distDir = resolve(join('..', '..', 'dist', 'bootcamp'));
 const pathToIndex = join(distDir, 'index.html');
@@ -10,7 +11,8 @@ const pathToIndex = join(distDir, 'index.html');
 const port = process.env['PORT'] || 8080;
 
 const app = express();
-
+app.use(cors());
+app.options('*', (req, res) => cors());
 app.use(express.static(distDir));
 app.use(bodyParser.json())
 app.use('/api', routers);

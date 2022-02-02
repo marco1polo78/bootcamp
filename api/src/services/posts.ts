@@ -6,9 +6,9 @@ export class PostsService {
     private postsDao: PostsDAO = new PostsDAO();
     private commentsDao: CommentsDAO = new CommentsDAO();
 
-    public async getList(): Promise<any> {
+    public async getList(options: any): Promise<any> {
         try {
-            const posts = await this.postsDao.getList();
+            const posts = await this.postsDao.getList(options);
             return posts;
         } catch (err) {
             throw err;
