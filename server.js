@@ -3,12 +3,15 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const app = express();
 const routes = require('./api/routes/routes');
+const cors = require('cors');
 
 //db
 const dbConnect = require('./api/db/dbconection');
 
 const distDir = __dirname + "/dist/bootcamp/";
-const pathToIndex = distDir + '/index.html'
+const pathToIndex = distDir + '/index.html';
+app.use(cors());
+app.options('*', cors());
 app.use(express.static(distDir));
 app.use(bodyParser.json());
 

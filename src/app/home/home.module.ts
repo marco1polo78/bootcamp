@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { LikeComponent } from './components/like/like.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { LikeComponent } from './components/like/like.component';
     CommonModule,
     MatIconModule,
     MatCardModule,
-    MatButtonModule
+    MatMenuModule,
+    MatButtonModule,
+    MatChipsModule
   ],
   exports: [BlogsFeedComponent]
 })
