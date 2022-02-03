@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -15,7 +16,7 @@ export class FromSignUppService {
 
   public signup(data: Object) {
     return this.http
-      .post('http://localhost:8080/api/users', data, httpOptions)
+      .post(environment.apiUrl + '/api/users', data, httpOptions)
       .subscribe({
         next: (data) => {
           console.log(data);
