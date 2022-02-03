@@ -24,7 +24,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   public signup() {
-    console.log(this.form.value);
     this.fromSignUppService.signup(this.form.value);
   }
 
