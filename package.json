@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "ng": "ng",
-    "start": "ts-node server.ts",
+    "start": "ng build; tsc --project tsconfig.api.json; node ./api/dist/server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
