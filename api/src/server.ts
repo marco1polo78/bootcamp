@@ -5,7 +5,7 @@ import connectDB from './db';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-const distDir = resolve(join('..', '..', 'dist', 'bootcamp'));
+const distDir = resolve(join('dist', 'bootcamp'));
 const pathToIndex = join(distDir, 'index.html');
 
 const port = process.env['PORT'] || 8080;
