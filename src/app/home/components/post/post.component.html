@@ -1,0 +1,26 @@
+<mat-card class="post-card" *ngIf="post">
+    <div class="post-card-header">
+        <mat-card-header>
+            <div mat-card-avatar class="post-card-image"></div>
+            <mat-card-title class="post-card-name">{{(post.authorId || {}).firstName}}</mat-card-title>
+            <mat-card-subtitle class="post-card-date">{{post.datePost | date :'longDate' }}</mat-card-subtitle>
+        </mat-card-header>
+        <!-- <app-like [like] = "{count: post.countLikes, beLiked: false}"></app-like> -->
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="delete()">
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+    </div>
+    <mat-card-content>
+        <h3>
+            {{post.title}}
+        </h3>
+        <p>
+            {{post.description}}
+        </p>
+    </mat-card-content>
+</mat-card>

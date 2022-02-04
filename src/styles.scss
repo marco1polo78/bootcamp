@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0
+}
+html, body { height: 100%; }
+body { margin: auto; max-width: 1200px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+input {
+    box-sizing: border-box;
+}

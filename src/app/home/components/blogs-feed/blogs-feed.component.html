@@ -1,0 +1,23 @@
+<div class="content">
+  <div class="content__newsfeed">
+    <div class="content__newsfeed__filter" *ngIf = "filterTags.length">
+      <p>Filter by tags:</p>
+      <mat-chip-list cdkDropList cdkDropListOrientation="horizontal">
+        <mat-chip cdkDrag *ngFor="let tag of filterTags" (click)="removeTagFromFilter(tag)">
+          {{tag}}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+    <app-post *ngFor="let p of posts | async" [post]="p"></app-post>
+  </div>
+  <aside class="content__tagbar">
+    <h3>
+      Popular Tags
+    </h3>
+    <mat-chip-list cdkDropList cdkDropListOrientation="horizontal">
+      <mat-chip cdkDrag *ngFor="let tag of (listTags | async)" (click)="onClick(tag)">
+        {{tag}}
+      </mat-chip>
+    </mat-chip-list>
+  </aside>
+</div>

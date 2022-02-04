@@ -1,0 +1,31 @@
+<div class="login">
+  <div class="login-content">
+    <mat-toolbar>
+      <span>LOGIN</span>
+    </mat-toolbar>
+    <form [formGroup]="form">
+      <mat-form-field class="full-width">
+        <mat-label>Login</mat-label>
+        <input
+          matInput
+          placeholder="Login"
+          name="login"
+          formControlName="login"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          placeholder="Password"
+          name="password"
+          formControlName="password"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="login-actions">
+    <button mat-raised-button (click)="close()">Close</button>
+    <button mat-raised-button (click)="submit()" type="submit">LOGIN</button>
+  </div>
+</div>
